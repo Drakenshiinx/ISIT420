@@ -5,12 +5,12 @@ var router = express.Router();
 // .ADO.Net is a wrapper over raw SQL server interface
 const mongoose = require("mongoose");
 
-const ToDos = require("../ToDos");
+const PetItems = require("../PetItems");
 
 // edited to include my non-admin, user level account and PW on mongo atlas
 // and also to include the name of the mongo DB that the collection
 const dbURI =
- "mongodb+srv://xxxxxxxxxxx:xxxxxxxxxxxxx@tiffcluster.5aju4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+ "mongodb+srv://ISIT420User:ISIT420User@tiffcluster.5aju4.mongodb.net/PetItems?retryWrites=true&w=majority";
 
 // Make Mongoose use `findOneAndUpdate()`. Note that this option is `true`
 // by default, you need to set it to false.
@@ -37,15 +37,15 @@ router.get('/', function(req, res) {
   res.sendFile('index.html');
 });
 
-/* GET all ToDos */
-router.get('/ToDos', function(req, res) {
+/* GET all PetItems */
+router.get('/PetItems', function(req, res) {
   // find {  takes values, but leaving it blank gets all}
-  ToDos.find({}, (err, AllToDos) => {
+  PetItems.find({}, (err, AllPetItems) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
     }
-    res.status(200).json(AllToDos);
+    res.status(200).json(AllPetItems);
   });
 });
 
@@ -53,24 +53,24 @@ router.get('/ToDos', function(req, res) {
 
 
 /* post a new ToDo and push to Mongo */
-router.post('/NewToDo', function(req, res) {
+router.post('/NewPetItem', function(req, res) {
 
-    let oneNewToDo = new ToDos(req.body);  // call constuctor in ToDos code that makes a new mongo ToDo object
+    let oneNewPetItem = new PetItems(req.body);  // call constuctor in PetItems code that makes a new mongo ToDo object
     console.log(req.body);
-    oneNewToDo.save((err, todo) => {
+    oneNewPetItem.save((err, MyPetItem) => {
       if (err) {
         res.status(500).send(err);
       }
       else {
-      console.log(todo);
-      res.status(201).json(todo);
+      console.log(MyPetItem);
+      res.status(201).json(MyPetItem);
       }
     });
 });
 
 
-router.delete('/DeleteToDo/:id', function (req, res) {
-  ToDos.deleteOne({ _id: req.params.id }, (err, note) => { 
+router.delete('/DeletePetItem/:id', function (req, res) {
+  PetItems.deleteOne({ _id: req.params.id }, (err, note) => { 
     if (err) {
       res.status(404).send(err);
     }
@@ -79,29 +79,29 @@ router.delete('/DeleteToDo/:id', function (req, res) {
 });
 
 
-router.put('/UpdateToDo/:id', function (req, res) {
-  ToDos.findOneAndUpdate(
+router.put('/UpdatePetItem/:id', function (req, res) {
+  PetItems.findOneAndUpdate(
     { _id: req.params.id },
     { title: req.body.title, detail: req.body.detail, priority: req.body.priority,   completed: req.body.completed },
    { new: true },
-    (err, todo) => {
+    (err, MyPetItem) => {
       if (err) {
         res.status(500).send(err);
     }
-    res.status(200).json(todo);
+    res.status(200).json(MyPetItem);
     })
   });
 
 
-  /* GET one ToDos */
-router.get('/FindToDo/:id', function(req, res) {
+  /* GET one PetItems */
+router.get('/FindPetItem/:id', function(req, res) {
   console.log(req.params.id );
-  ToDos.find({ _id: req.params.id }, (err, oneToDo) => {
+  PetItems.find({ _id: req.params.id }, (err, onePetItem) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
     }
-    res.status(200).json(oneToDo);
+    res.status(200).json(onePetItem);
   });
 });
 

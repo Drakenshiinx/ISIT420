@@ -1,5 +1,5 @@
 
-function ToDo(pTitle, pDetail, pPriority) {
+function PetItem(pTitle, pDetail, pPriority) {
     this.title= pTitle;
     this.detail = pDetail;
     this.priority = pPriority;
@@ -14,14 +14,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
         var tTitle = document.getElementById("title").value;
         var tDetail = document.getElementById("detail").value;
         var tPriority = document.getElementById("priority").value;
-        var oneToDo = new ToDo(tTitle, tDetail, tPriority);
+        var onePetItem = new PetItem(tTitle, tDetail, tPriority);
 
         $.ajax({
-            url: '/NewToDo' ,
+            url: '/NewPetItem' ,
             method: 'POST',
             dataType: 'json',
             contentType: 'application/json',
-            data: JSON.stringify(oneToDo),
+            data: JSON.stringify(onePetItem),
             success: function (result) {
                 console.log("added new note")
             }
@@ -37,10 +37,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     document.getElementById("delete").addEventListener("click", function () {
         
-        var whichToDo = document.getElementById('deleteTitle').value;
+        var whichPetItem = document.getElementById('deleteTitle').value;
         var idToDelete = "";
         for(i=0; i< ClientNotes.length; i++){
-            if(ClientNotes[i].title === whichToDo) {
+            if(ClientNotes[i].title === whichPetItem) {
                 idToDelete = ClientNotes[i]._id;
            }
         }
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         if(idToDelete != "")
         {
                      $.ajax({  
-                    url: 'DeleteToDo/'+ idToDelete,
+                    url: 'DeletePetItem/'+ idToDelete,
                     type: 'DELETE',  
                     contentType: 'application/json',  
                     success: function (response) {  
@@ -70,14 +70,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
         var tTitle = document.getElementById("mtitle").value;
         var tDetail = document.getElementById("mdetail").value;
         var tPriority = document.getElementById("mpriority").value;
-        var oneToDo = new ToDo(tTitle, tDetail, tPriority);
-        oneToDo.completed =  document.getElementById("mcompleted").value;
+        var onePetItem = new PetItem(tTitle, tDetail, tPriority);
+        onePetItem.completed =  document.getElementById("mcompleted").value;
         
             $.ajax({
-                url: 'UpdateToDo/'+idToFind,
+                url: 'UpdatePetItem/'+idToFind,
                 type: 'PUT',
                 contentType: 'application/json',
-                data: JSON.stringify(oneToDo),
+                data: JSON.stringify(onePetItem),
                     success: function (response) {  
                         console.log(response);  
                     },  
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         }
         console.log(idToFind);
  
-        $.get("/FindToDo/"+ idToFind, function(data, status){ 
+        $.get("/FindPetItem/"+ idToFind, function(data, status){ 
             console.log(data[0].title);
             document.getElementById("mtitle").value = data[0].title;
             document.getElementById("mdetail").value= data[0].detail;
@@ -126,15 +126,15 @@ ul.innerHTML = "";  // clears existing list so we don't duplicate old ones
 
 //var ul = document.createElement('ul')
 
-$.get("/ToDos", function(data, status){  // AJAX get
+$.get("/PetItems", function(data, status){  // AJAX get
     ClientNotes = data;  // put the returned server json data into our local array
 
     // sort array by one property
     ClientNotes.sort(compare);  // see compare method below
     console.log(data);
     //listDiv.appendChild(ul);
-    ClientNotes.forEach(ProcessOneToDo); // build one li for each item in array
-    function ProcessOneToDo(item, index) {
+    ClientNotes.forEach(ProcessOnePetItem); // build one li for each item in array
+    function ProcessOnePetItem(item, index) {
         var li = document.createElement('li');
         ul.appendChild(li);
 
