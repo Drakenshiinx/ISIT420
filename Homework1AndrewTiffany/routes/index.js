@@ -74,7 +74,7 @@ router.delete('/DeletePetItem/:id', function (req, res) {
     if (err) {
       res.status(404).send(err);
     }
-    res.status(200).json({ message: "ToDo successfully deleted" });
+    res.status(200).json({ message: "Pet Item successfully deleted" });
   });
 });
 
