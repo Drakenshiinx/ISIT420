@@ -82,7 +82,7 @@ router.delete('/DeletePetItem/:id', function (req, res) {
 router.put('/UpdatePetItem/:id', function (req, res) {
   PetItems.findOneAndUpdate(
     { _id: req.params.id },
-    { title: req.body.title, petType: req.body.petType, priority: req.body.priority,   completed: req.body.completed },
+    { title: req.body.title, petType: req.body.petType, amount: req.body.amount,   price: req.body.price },
    { new: true },
     (err, MyPetItem) => {
       if (err) {
