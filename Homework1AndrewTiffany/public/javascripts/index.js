@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         var tprice = document.getElementById("mprice").value;
         var tamount = document.getElementById("mamount").value;
         var onePetItem = new PetItem(tTitle, tpetType, tprice, tamount);
-        onePetItem.amount =  document.getElementById("mcompleted").value;
+        onePetItem.amount =  document.getElementById("mamount").value;
         
             $.ajax({
                 url: 'UpdatePetItem/'+idToFind,
@@ -140,7 +140,7 @@ $.get("/PetItems", function(data, status){  // AJAX get
         var li = document.createElement('li');
         ul.appendChild(li);
 
-        li.innerHTML=li.innerHTML + index + ": " + " Price: " + item.price + "  " + item.title + ":  " + item.petType + " Price: "+ item.amount;
+        li.innerHTML=li.innerHTML + index + ": " + " Price: " + item.price + "  " + " Pet Food: " + item.title + ":  " + item.petType + " Amount (oz): "+ item.amount;
     }
 });
 }
