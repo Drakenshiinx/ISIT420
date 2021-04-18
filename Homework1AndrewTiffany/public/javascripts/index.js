@@ -140,7 +140,7 @@ $.get("/PetItems", function(data, status){  // AJAX get
         var li = document.createElement('li');
         ul.appendChild(li);
 
-        li.innerHTML=li.innerHTML + index + ": " + " Price: " + item.price + "  " + " Pet Food: " + item.title + ":  " + item.petType + " Amount (oz): "+ item.amount;
+        li.innerHTML=li.innerHTML + index + ": " + " Pet Food: " + item.title + ":  " + item.petType + " Amount (oz): "+ item.amount + " Price: $" + item.price;
     }
 });
 }
