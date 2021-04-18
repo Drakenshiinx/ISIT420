@@ -1,9 +1,10 @@
 
-function PetItem(pTitle, pDetail, pPriority) {
+function PetItem(pTitle, ppetType, pamount, pprice) {
     this.title= pTitle;
-    this.detail = pDetail;
-    this.priority = pPriority;
-    this.completed = false;
+    this.petType = ppetType;
+    this.amount = pamount;
+    this.price = pprice;
+    // this.completed = false;
   }
   var ClientNotes = [];  // our local copy of the cloud data
 
@@ -12,9 +13,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     document.getElementById("submit").addEventListener("click", function () {
         var tTitle = document.getElementById("title").value;
-        var tDetail = document.getElementById("detail").value;
-        var tPriority = document.getElementById("priority").value;
-        var onePetItem = new PetItem(tTitle, tDetail, tPriority);
+        var tpetType = document.getElementById("petType").value;
+        var tamount = document.getElementById("amount").value;
+        var tprice = document.getElementById("price").value
+        var onePetItem = new PetItem(tTitle, tpetType, tamount, tprice);
 
         $.ajax({
             url: '/NewPetItem' ,
@@ -68,10 +70,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     document.getElementById("msubmit").addEventListener("click", function () {
         var tTitle = document.getElementById("mtitle").value;
-        var tDetail = document.getElementById("mdetail").value;
-        var tPriority = document.getElementById("mpriority").value;
-        var onePetItem = new PetItem(tTitle, tDetail, tPriority);
-        onePetItem.completed =  document.getElementById("mcompleted").value;
+        var tpetType = document.getElementById("mpetType").value;
+        var tamount = document.getElementById("mamount").value;
+        var tprice = document.getElementById("mprice").val
+        var onePetItem = new PetItem(tTitle, tpetType, tamount, tprice);
+        // onePetItem.completed =  document.getElementById("mcompleted").value;
         
             $.ajax({
                 url: 'UpdatePetItem/'+idToFind,
