@@ -12,15 +12,15 @@ const PetItemSchema = new Schema({
     type: String,
     required: true
   },
-  detail: {
+  petType: {
     type: String,
     required: true
   },
-  completed: {
-    type: Boolean,
+  amount: {
+    type: Number,
     required: true
   },
-  priority: {
+  price: {
     type: Number,
     required: true
   }

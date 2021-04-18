@@ -1,9 +1,9 @@
 
-function PetItem(pTitle, pDetail, pPriority) {
+function PetItem(pTitle, ppetType, pprice, pamount) {
     this.title= pTitle;
-    this.detail = pDetail;
-    this.priority = pPriority;
-    this.completed = false;
+    this.petType = ppetType;
+    this.price = pprice;
+    this.amount = pamount;
   }
   var ClientNotes = [];  // our local copy of the cloud data
 
@@ -12,9 +12,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     document.getElementById("submit").addEventListener("click", function () {
         var tTitle = document.getElementById("title").value;
-        var tDetail = document.getElementById("detail").value;
-        var tPriority = document.getElementById("priority").value;
-        var onePetItem = new PetItem(tTitle, tDetail, tPriority);
+        var tpetType = document.getElementById("petType").value;
+        var tprice = document.getElementById("price").value;
+        var tamount = document.getElementById("amount").value;
+        var onePetItem = new PetItem(tTitle, tpetType, tprice, tamount);
 
         $.ajax({
             url: '/NewPetItem' ,
@@ -68,10 +69,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     document.getElementById("msubmit").addEventListener("click", function () {
         var tTitle = document.getElementById("mtitle").value;
-        var tDetail = document.getElementById("mdetail").value;
-        var tPriority = document.getElementById("mpriority").value;
-        var onePetItem = new PetItem(tTitle, tDetail, tPriority);
-        onePetItem.completed =  document.getElementById("mcompleted").value;
+        var tpetType = document.getElementById("mpetType").value;
+        var tprice = document.getElementById("mprice").value;
+        var tamount = document.getElementById("mamount").value;
+        var onePetItem = new PetItem(tTitle, tpetType, tprice, tamount);
+        onePetItem.amount =  document.getElementById("mcompleted").value;
         
             $.ajax({
                 url: 'UpdatePetItem/'+idToFind,
@@ -106,9 +108,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
         $.get("/FindPetItem/"+ idToFind, function(data, status){ 
             console.log(data[0].title);
             document.getElementById("mtitle").value = data[0].title;
-            document.getElementById("mdetail").value= data[0].detail;
-            document.getElementById("mpriority").value = data[0].priority;
-            document.getElementById("mcompleted").value = data[0].completed;
+            document.getElementById("mpetType").value= data[0].petType;
+            document.getElementById("mprice").value = data[0].price;
+            document.getElementById("mamount").value = data[0].amount;
            
 
         });
@@ -138,16 +140,16 @@ $.get("/PetItems", function(data, status){  // AJAX get
         var li = document.createElement('li');
         ul.appendChild(li);
 
-        li.innerHTML=li.innerHTML + index + ": " + " Priority: " + item.priority + "  " + item.title + ":  " + item.detail + " Done? "+ item.completed;
+        li.innerHTML=li.innerHTML + index + ": " + " Price: " + item.price + "  " + item.title + ":  " + item.petType + " Price: "+ item.amount;
     }
 });
 }
 
 function compare(a,b) {
-    if (a.completed == false && b.completed== true) {
+    if (a.amount == false && b.amount== true) {
         return -1;
     }
-    if (a.completed == false && b.completed== true) {
+    if (a.amount == false && b.amount== true) {
         return 1;
     }
     return 0;
