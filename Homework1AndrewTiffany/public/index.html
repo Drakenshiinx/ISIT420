@@ -3,21 +3,21 @@
 
 <head>
     <meta charset="utf-8">
-    <title>starter code</title>
+    <title>Pet Food</title>
 <link rel="stylesheet" type="text/css" href="/stylesheets/index.css">
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 </head>
 
 <body>
-<h2>V2 To Do's</h2>
+<h2>Pet Food Inventory</h2>
 <div class="grid-container">
    
 
 
 <div  class="grid-item">
-    <h3>Existing To Dos</h3>
-    <button type="button" id=get>Show Existing</button>
+    <h3>Current Pet Food Inventory</h3>
+    <button type="button" id=get>Show Inventory</button>
     <ul id="listUl"></ul>
 </div>
    
@@ -25,13 +25,15 @@
    
    
     <div  class="grid-item">
-        <h3>Add a new ToDo</h3>
-        <label for="title">Title:</label>
+        <h3>Add Pet Food to Inventory</h3>
+        <label for="title">Name:</label>
         <input type="text" id="title" name="fname"><br><br>
-        <label for="detail">Detail:</label>
+        <label for="detail">Pet Type:</label>
         <input type="text" id="detail" name="fname"><br><br>
-        <label for="priority">Priority:</label>
-        <input type="text" id="priority" name="fname"><br><br>
+        <label for="priority">Amount (oz):</label>
+        <input type="text" id="detail" name="fname"><br><br>
+        <label for="price">Price (Dollars):</label>
+        <input type="text" id="price" name="fname"><br><br>
         <button type="button" id=submit>SUBMIT</button>
        
     </div>
@@ -39,22 +41,22 @@
    
 
     <div  class="grid-item">
-        <h3>Delete Pet Item by Title</h3>
+        <h3>Delete Pet Food from Inventory</h3>
         <div>
-            Enter Title here:  <input type="text" id="deleteTitle"><br><br>
+            Enter Pet Food Name here:  <input type="text" id="deleteTitle"><br><br>
             <button type="button" id=delete>DELETE</button><br>
         </div>
     </div>
 
    
     <div  class="grid-item">
-        <h3>Edit one Pet Item </h3>
+        <h3>Edit a Pet Food </h3>
         <div>
-            Enter Title here:  <input type="text" id="modTitle"><br><br>
+            Enter Pet Food Name here:  <input type="text" id="modTitle"><br><br>
             <button type="button" id=find>FIND</button><br>
         </div>
         <div>
-            <h3>Edit these fields</h3>
+            <h3>Edit Pet Food Info</h3>
         <input type="text" id="mtitle" ><br><br>
         <input type="text" id="mdetail" ><br><br>
         <input type="text" id="mpriority" ><br><br>
